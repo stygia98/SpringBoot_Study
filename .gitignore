@@ -1,0 +1,143 @@
+# =========================================================================
+# 1. 자바 컴파일 및 빌드 결과물 (Compiled Class & Packaged Files)
+# =========================================================================
+*.class
+*.log
+*.ctxt
+
+# 패키지 및 압축 파일 (빌드 산출물)
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# 빌드 디렉터리 (공통 및 도구별)
+target/
+/target/
+bin/
+out/
+/out/
+build/
+/build/
+/dist/
+/nbbuild/
+/nbdist/
+
+# =========================================================================
+# 2. 크래시 리포트 및 로그 / 임시 파일 (Logs & Temp Files)
+# =========================================================================
+*.log.*
+log/
+logs/
+hs_err_pid*
+replay_pid*
+*.coredump
+.help/
+
+# =========================================================================
+# 3. 데이터베이스 관련 (로컬 테스트용 내장 DB)
+# =========================================================================
+*.mv.db
+*.trace.db
+*.db
+
+# =========================================================================
+# 4. 빌드 도구 및 래퍼 설정 (Build Tools & Wrappers)
+# =========================================================================
+# Maven
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Gradle
+.gradle/
+.core/
+/captures/
+
+# [중요] 래퍼 파일은 협업 및 빌드 서버를 위해 Git이 추적하도록 예외(!) 처리
+!gradle/wrapper/gradle-wrapper.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# =========================================================================
+# 5. IDE (개발 도구) 전용 파일 및 디렉터리
+# =========================================================================
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/libraries
+gen/
+
+### Eclipse ###
+.metadata/
+.classpath
+.project
+.settings/
+*.launch
+.factorypath
+tmp/
+
+### Visual Studio Code ###
+.vscode/
+*.code-workspace
+
+### NetBeans ###
+**/nbproject/private/
+nbproject/private/
+/.netbeans_derby/
+.nb-gradle/
+
+# =========================================================================
+# 6. 프론트엔드 연동 및 패키지 관리 (Node / npm)
+# =========================================================================
+node_modules/
+/src/main/resources/static/node_modules/
+
+# =========================================================================
+# 7. 보안 및 로컬 환경 설정 (Security & Local Configuration)
+# =========================================================================
+# API 키, DB 비밀번호 등 민감한 정보가 포함된 설정 파일 전체 보호
+*.properties
+*.yml
+*.yaml
+
+# 만약 공통 틀(application.yml)은 공유하고 로컬/운영 비밀번호만 숨길 때 예시
+# (이 규칙을 쓰려면 위의 *.yml 차단을 주석 처리하거나 개별 지정해야 합니다)
+# application-local.properties
+# application-local.yml
+# application-prod.properties
+# application-prod.yml
+
+# 로컬 환경 변수 파일 (Docker, Spring, Node 등 공통)
+.env
+.env.*
+!.env.example   # 환경변수 틀 공유를 위한 예시 파일은 허용
+
+# =========================================================================
+# 8. JSP / Web / Tomcat 관련 (Tomcat Web Server Context)
+# =========================================================================
+/work/
+/temp/
+
+# =========================================================================
+# 9. OS 및 시스템 생성 파일 (OS-specific files)
+# =========================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
