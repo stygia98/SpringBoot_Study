@@ -93,7 +93,7 @@
   <header>header</header>
 
   <div class="container">
-    <h1>ìëì¤í¼ì ê²ë</h1>
+    <h1>에디오피아 게뎁</h1>
     <section>
       <div class="product1">
         <img id="coffeeImg" src="./images/coffee-blue.jpg" alt="">
@@ -105,15 +105,15 @@
       </div>
       <div class="product2">
         <ul>
-          <li>ìíëª : ìëì¤í¼ì ê²ë</li>
-          <li>íë§¤ê° : 9,000ì</li>
-          <li>ë°°ì¡ë¹ : 3,000ì</li>
-          <li>(50,000ì ì´ì êµ¬ë§¤ì ë¬´ë£)</li>
-          <li>ì ë¦½ê¸ : 180ì(2%)</li>
-          <li>ë¡ì¤í : 2019.06.17</li>
+          <li>상품명 : 에디오피아 게뎁</li>
+          <li>판매가 : 9,000원</li>
+          <li>배송비 : 3,000원</li>
+          <li>(50,000원 이상 구매시 무료)</li>
+          <li>적립금 : 180원(2%)</li>
+          <li>로스팅 : 2019.06.17</li>
         </ul>
-        <button type="button">ì¥ë°êµ¬ëë´ê¸°</button>
-        <p>ìì¸ ì¤ëª ë³´ê¸°</p>
+        <button type="button">장바구니담기</button>
+        <p>상세 설명 보기</p>
       </div>
     </section>
   </div>
