@@ -36,8 +36,6 @@ public class TestController {
 	// http://localhost:8080/home
 	// get put delete post patch
 
-	
-	
 	@GetMapping("/test/posthome")
 	public void posthome() {}
 	
