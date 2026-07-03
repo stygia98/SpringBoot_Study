@@ -19,8 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-//@RequestMapping(value = "/board")
-public class BoardController {
+@RequestMapping(value = "/board")
+public class MemberController {
 	// http://192.168.0.98:8080/home
 	// http://127.0.0.1:8080/home
 	// get put delete post patch
