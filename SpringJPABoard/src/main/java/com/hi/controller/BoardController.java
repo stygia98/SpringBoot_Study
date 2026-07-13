@@ -23,13 +23,25 @@ import com.hi.service.BoardService;
 public class BoardController {
 	//http://localhost:8080/board/insertForm
 	
-	@Autowired
+//	@Autowired
 	private BoardService boardService;
 	
+	@Autowired
+	public void setBoardService(BoardService boardService) {
+		this.boardService = boardService;
+	}
+
+//	@Autowired
+//	public BoardController(BoardService boardService) {
+//		this.boardService = boardService;
+//	}
+
 //	private final BoardServiceImpl boardServiceImpl;
 //	BoardController(BoardServiceImpl boardServiceImpl) {
 //		this.boardServiceImpl = boardServiceImpl;
 //	}
+
+
 
 	// 게시판 입력창
 	@RequestMapping(value = "/board/insertForm", method=RequestMethod.GET)
