@@ -17,6 +17,24 @@ public class BoardRepo {
 	//jdbc template
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	public boolean insert(Board board) throws Exception {
+		String query = "INSERT INTO board(boardNo, title, content, writer)" + "VALUES(board_seq.nextval, ?, ?, ?)";
+		int count = jdbcTemplate.update(query, board.getTitle(), board.getContent(), board.getWriter());
+		return (count == 0) ? (false) : (true);
+	}
+
+	public boolean update(Board board) throws Exception {
+		String query = "update board set title=?, content=?, writer=? where boardno=?";
+		int count = jdbcTemplate.update(query, board.getTitle(), board.getContent(), board.getWriter(), board.getBoardNo());
+		return (count == 0) ? (false) : (true);
+	}
+
+	public boolean delete(Board board) throws Exception {
+		String query = "delete from board where boardno = ?";
+		int count = jdbcTemplate.update(query, board.getBoardNo());
+		return (count <= 0) ? (false) : (true);
+	}
 	
 	public Board select(Board board) throws Exception {
 		String query = "select * from board where boardno = ?";
@@ -38,27 +56,7 @@ public class BoardRepo {
 		}, board.getBoardNo());
 		return (list.isEmpty() == true) ? (null) : (list.get(0));
 	}
-
-	public boolean insert(Board board) throws Exception {
-		String query = "INSERT INTO board(boardNo, title, content, writer)" + "VALUES(board_seq.nextval, ?, ?, ?)";
-		int count = jdbcTemplate.update(query, board.getTitle(), board.getContent(), board.getWriter());
-		return (count == 0) ? (false) : (true);
-	}
-
-	public boolean update(Board board) throws Exception {
-		String query = "update board set title=?, content=?, writer=? where boardno=?";
-		
-		int count = jdbcTemplate.update(query, board.getTitle(), board.getContent(), board.getWriter(), board.getBoardNo());
-		return (count == 0) ? (false) : (true);
-	}
-
-	public boolean delete(Board board) throws Exception {
-		String query = "delete from board where boardno = ?";
-		
-		int count = jdbcTemplate.update(query, board.getBoardNo());
-		return (count <= 0) ? (false) : (true);
-	}
-
+	
 	public List<Board> list() throws Exception {
 		String query = "select * from board where boardno > 0 order by regdate desc";
 		List<Board> list = jdbcTemplate.query(query, new RowMapper<Board>() {

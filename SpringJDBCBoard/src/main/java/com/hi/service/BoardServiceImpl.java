@@ -17,6 +17,45 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardRepo boardRepo;
+
+	@Override
+	@Transactional
+	public boolean insert(BoardDTO boardDTO) throws Exception {
+		if(boardDTO == null || boardDTO.getTitle() == null) { return false; }
+		
+		Board board = new Board();
+		//board.setBoardNo(boardDTO.getBoardNo());
+		board.setWriter(boardDTO.getWriter());
+		board.setTitle(boardDTO.getTitle());
+		board.setContent(boardDTO.getContent());
+
+		return boardRepo.insert(board);
+	}
+
+	@Override
+	@Transactional
+	public boolean update(BoardDTO boardDTO) throws Exception {
+		if (boardDTO.getBoardNo() <= 0) { return false; }
+
+		Board board = new Board();
+		board.setBoardNo(boardDTO.getBoardNo());
+		board.setWriter(boardDTO.getWriter());
+		board.setTitle(boardDTO.getTitle());
+		board.setContent(boardDTO.getContent());
+		
+		return boardRepo.update(board);
+	}
+
+	@Override
+	@Transactional
+	public boolean delete(BoardDTO boardDTO) throws Exception {
+		if (boardDTO.getBoardNo() <= 0) { return false; }
+		
+		Board board = new Board();
+		board.setBoardNo(boardDTO.getBoardNo());
+				
+		return boardRepo.delete(board);
+	}
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -35,45 +74,7 @@ public class BoardServiceImpl implements BoardService {
 
 		return boardDTO;
 	}
-
-	@Override
-	@Transactional
-	public boolean insert(BoardDTO boardDTO) throws Exception {
-		if(boardDTO == null || boardDTO.getTitle() == null) { return true; }
-		Board board = new Board();
-		board.setBoardNo(boardDTO.getBoardNo()); //?
-		board.setWriter(boardDTO.getWriter());
-		board.setTitle(boardDTO.getTitle());
-		board.setContent(boardDTO.getContent());
-
-		return boardRepo.insert(board);
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public boolean update(BoardDTO boardDTO) throws Exception {
-		if (boardDTO.getBoardNo() <= 0) { return false; }
-		
-		Board board = new Board();
-		board.setBoardNo(boardDTO.getBoardNo());
-		board.setWriter(boardDTO.getWriter());
-		board.setTitle(boardDTO.getTitle());
-		board.setContent(boardDTO.getContent());
-		
-		return boardRepo.update(board);
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public boolean delete(BoardDTO boardDTO) throws Exception {
-		if (boardDTO.getBoardNo() <= 0) { return false; }
-		
-		Board board = new Board();
-		board.setBoardNo(boardDTO.getBoardNo());
-				
-		return boardRepo.delete(board);
-	}
-
+	
 	@Override
 	@Transactional(readOnly = true)
 	public List<BoardDTO> list() throws Exception {
