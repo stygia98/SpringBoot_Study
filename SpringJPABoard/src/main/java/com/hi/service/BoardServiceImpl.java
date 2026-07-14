@@ -37,22 +37,6 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
-	public BoardDTO select(BoardDTO boardDTO) throws Exception {
-		// return repository.getOne(boardNo);
-		// select * from board where board_no = 10;
-		Board board = repository.getReferenceById(boardDTO.getBoardNo());
-
-		boardDTO.setBoardNo((board.getBoardNo()));
-		boardDTO.setTitle(board.getTitle());
-		boardDTO.setContent(board.getContent());
-		boardDTO.setRegDate(board.getRegDate());
-		boardDTO.setWriter(board.getWriter());
-
-		return boardDTO;
-	}
-
-	@Override
 	@Transactional
 	public boolean update(BoardDTO boardDTO) throws Exception {
 		try {
@@ -94,25 +78,43 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	@Transactional(readOnly = true)
+	public BoardDTO select(BoardDTO boardDTO) throws Exception {
+		// return repository.getOne(boardNo);
+		// select * from board where board_no = 10;
+		Board board = repository.getReferenceById(boardDTO.getBoardNo());
+
+		boardDTO.setBoardNo((board.getBoardNo()));
+		boardDTO.setTitle(board.getTitle());
+		boardDTO.setContent(board.getContent());
+		boardDTO.setRegDate(board.getRegDate());
+		boardDTO.setWriter(board.getWriter());
+
+		return boardDTO;
+	}	
+	
+	@Override
+	@Transactional(readOnly = true)
 	public List<BoardDTO> list() throws Exception {
 		// select * from board order by board
-		 List<Board> list = repository.findAll(Sort.by(Direction.DESC, "boardNo"));
-		 
-		 if(list.size() <= 0) {
-				return null; 
-			}
-			List<BoardDTO> list2 = new ArrayList<>();
+		List<Board> list = repository.findAll(Sort.by(Direction.DESC, "boardNo"));
+		
+		if(list.size() <= 0) { return null; }
+		
+		List<BoardDTO> list2 = new ArrayList<>();
+		
+		for (Board board : list) {
+			BoardDTO boardDTO = new BoardDTO();
 			
-			for (Board board : list) {
-				BoardDTO boardDTO = new BoardDTO();
-				boardDTO.setBoardNo(board.getBoardNo());
-				boardDTO.setContent(board.getContent());
-				boardDTO.setRegDate(board.getRegDate());
-				boardDTO.setTitle(board.getTitle());
-				boardDTO.setWriter(board.getWriter());
-				list2.add(boardDTO);
-			}
-			return list2;
+			boardDTO.setBoardNo(board.getBoardNo());
+			boardDTO.setContent(board.getContent());
+			boardDTO.setRegDate(board.getRegDate());
+			boardDTO.setTitle(board.getTitle());
+			boardDTO.setWriter(board.getWriter());
+			
+			list2.add(boardDTO);
+		}
+		
+		return list2;
 	}
 
 }

@@ -14,14 +14,13 @@ import lombok.Data;
 
 @Data
 @Entity
-@SequenceGenerator(name = "JPABOARD_SEQ_GEN", sequenceName = "JPABOARD_SEQ", initialValue = 1,
-        allocationSize = 1)
+@SequenceGenerator(name = "JPABOARD_SEQ_GEN", sequenceName = "JPABOARD_SEQ", initialValue = 1, allocationSize = 1)
 @Table(name = "jpaboard")
 public class Board {
+    // 사용할 전략을 시퀀스로 선택
+    // 식별자 생성기를 설정해 놓은 JPABOARD_SEQ_GEN으로 설정
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, // 사용할 전략을 시퀀스로 선택
-            generator = "JPABOARD_SEQ_GEN" // 식별자 생성기를 설정해 놓은 JPABOARD_SEQ_GEN으로 설정
-    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "JPABOARD_SEQ_GEN")
     @Column(name = "BOARD_NO")
     private Long boardNo;
 

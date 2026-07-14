@@ -1,7 +1,5 @@
 package com.hi.controller;
 
-import com.hi.service.BoardServiceImpl;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
