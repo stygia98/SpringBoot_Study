@@ -145,7 +145,7 @@ public class BoardController {
 		List<BoardDTO> list = boardService.search(boardDTO);
 		if (list == null || list.size() <= 0) { return "board/fail"; }
 		model.addAttribute("list", list);
-		return "/board/search";
+		return "/board/list";
 	}
 
 //	@RequestMapping(value = "/board/search", method=RequestMethod.POST)
