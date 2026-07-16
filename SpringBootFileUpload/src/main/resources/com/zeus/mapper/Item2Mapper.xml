@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeus.mapper.Item2Mapper">
+
+	<!-- <select id="select" resultType="com.zeus.domain.Item2"> -->
+	<!-- mybatis-config.xml -> <typeAliases> -> <package> name 지정 -->
+	<select id="select" resultType="Item2">
+		SELECT item_id, item_name, price, description, picture_url1, picture_url2
+		FROM item2
+		WHERE item_id = #{itemId}
+	</select>
+
+	<insert id="insert">
+		<selectKey keyProperty="itemId" resultType="int" order="BEFORE">
+			SELECT item2_seq.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO item2 ( item_id, item_name, price, description, picture_url1, picture_url2 )
+		VALUES ( #{itemId}, #{itemName}, #{price}, #{description}, #{pictureUrl1}, #{pictureUrl2} )
+		<!-- #{item_id} -> #{itemId} -->
+	</insert>
+
+	<update id="update">
+		UPDATE item2
+		SET item_name = #{itemName}, 
+			price = #{price}, 
+			description = #{description}, 
+			picture_url1 = #{pictureUrl1}, 
+			picture_url2 = #{pictureUrl2}
+		WHERE item_id = #{itemId}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM item2
+		WHERE item_id = #{itemId}
+	</delete>
+
+	<!-- <select id="list" resultType="com.zeus.domain.Item2"> -->
+	<select id="list" resultType="Item2">
+		<![CDATA[
+			SELECT item_id, item_name, price, description, picture_url1, picture_url2
+			FROM item2
+			WHERE item_id > 0 ORDER BY item_id DESC
+		]]>
+	</select>
+
+	<!-- <select id="list" resultType="com.zeus.domain.Item2"> -->
+	<select id="getPicture1" resultType="Item2">
+		<![CDATA[
+			SELECT picture_url1
+			FROM item2
+			WHERE item_id = #{itemId}
+		]]>
+	</select>
+	<select id="getPicture2" resultType="Item2">
+		<![CDATA[
+			SELECT picture_url2
+			FROM item2
+			WHERE item_id = #{itemId}
+		]]>
+	</select>
+
+</mapper>
