@@ -23,7 +23,7 @@
         </div>
         <div>
 			<form method="POST" action="/board/search">
-			TITLE : <input type="text" name="title" />
+			TITLE 검색 : <input type="text" name="title" />
 			<input type="submit" value="검색" />
 			</form>
         </div>
@@ -58,8 +58,7 @@
                     <td class="col-writer">
                         <span class="writer-badge">${board.writer}</span>
                     </td>
-                    <td class="col-writer"><fmt:formatDate 
-pattern="yyyy-MM-dd HH:mm" value="${board.regDate}" /></td>
+                    <td class="col-writer"><fmt:formatDate pattern="yy-MM-dd HH:mm" value="${board.regDate}" /></td>
             </c:forEach>
             </tbody>
         </table>

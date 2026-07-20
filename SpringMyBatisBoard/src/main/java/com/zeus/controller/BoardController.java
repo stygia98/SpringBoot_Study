@@ -6,6 +6,8 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.zeus.dto.BoardDTO;
+import com.zeus.exception.BoardRecordNotFoundException;
 import com.zeus.service.BoardService;
 
 @Slf4j
@@ -50,11 +53,16 @@ public class BoardController {
 	
 	//게시판 입력내용 저장 요청
 	@RequestMapping(value = "/board/insert", method=RequestMethod.POST)
-	public String boardInsert(BoardDTO boardDTO, Model model, RedirectAttributes rttr) throws Exception {
+	public String boardInsert(@Validated BoardDTO boardDTO, BindingResult bindResult, Model model, RedirectAttributes rttr) throws Exception {
+		if (bindResult.hasErrors()) {
+			return "board/insertForm";
+		}
+		
 		boolean result = boardService.insert(boardDTO);
 		
 		if (result == false) {
-			rttr.addFlashAttribute("msg", "게시글 작성 실패, 다시 시도해주세요");
+//			rttr.addFlashAttribute("msg", "게시글 작성 실패, 다시 시도해주세요");
+			new BoardRecordNotFoundException("입력 실패" + boardDTO.toString());
 		} else {
 			rttr.addFlashAttribute("msg", "게시글 작성 성공");
 			rttr.addAttribute("writer", boardDTO.getWriter());
@@ -78,7 +86,11 @@ public class BoardController {
 	public String boardSelect(BoardDTO boardDTO, Model model) throws Exception {
 		if (boardDTO.getBoardNo() <= 0) { return "board/fail"; }
 		boardDTO = boardService.select(boardDTO);
-		if(boardDTO == null) { return "board/fail"; }
+		if(boardDTO == null) { 
+		throw new BoardRecordNotFoundException(boardDTO.getBoardNo() + "번 게시글은 없는 게시글입니다.");
+			
+//			return "board/fail"; 
+		}
 		model.addAttribute("boardDTO", boardDTO);
 		return "board/select";
 	}
