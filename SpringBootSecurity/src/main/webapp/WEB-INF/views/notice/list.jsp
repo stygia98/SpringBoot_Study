@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="true"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/resultForm.css">
+</head>
+<body>
+	<h1>회원게시판</h1>
+	<h3>게시글 목록 : 모두가 접근 가능</h3>
+	<a href="/notice/insertForm">게시글 등록</a>
+</body>
+</html>
