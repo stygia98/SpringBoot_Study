@@ -4,8 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
-<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/resultForm.css">
 </head>
 <body>
 	<h3>로그아웃</h3>

@@ -1,15 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="true"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
-<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/resultForm.css">
 </head>
 <body>
 	<h1>회원게시판</h1>
 	<h3>게시글 등록 : 로그인한 회원만 접근 가능</h3>
-	<a href="/">홈 화면</a>
+	<!-- <a href="/">홈 화면</a> -->
+
+	<form action="/logout" method="post">
+		<sec:csrfInput />
+		<p>
+			principal :
+			<sec:authentication property="principal" />
+		</p>
+		<p>
+			Member :
+			<sec:authentication property="principal.member" />
+		</p>
+		<p>
+			사용자이름 :
+			<sec:authentication property="principal.member.userName" />
+		</p>
+		<p>
+			사용자아이디 :
+			<sec:authentication property="principal.username" />
+		</p>
+		<p>
+			사용자 권한 리스트 :
+			<sec:authentication property="principal.member.authList" />
+		</p>
+		<div>
+			<a href="/">HOME</a>
+		</div>
+		<button>로그아웃</button>
+	</form>
+
 </body>
 </html>

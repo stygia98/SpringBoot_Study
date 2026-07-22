@@ -4,8 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
-<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/resultForm.css">
 </head>
 <body>
 	<h1>로그인</h1>
@@ -21,6 +19,10 @@
 		</div>
 		<div>
 			<input type="password" name="password" value="">
+		</div>
+		<!-- 로그인 상태유지 체크박스 -->
+		<div>
+			<input type="checkbox" name="remember-me"> 로그인 상태유지
 		</div>
 		<div>
 			<input type="submit">

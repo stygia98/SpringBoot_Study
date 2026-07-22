@@ -1,5 +1,6 @@
 package com.zeus.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ public class NoticeController {
 		return "notice/list";
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping("/notice/insertForm")
 	public String insertForm() {
 		log.info("registerForm : 관리자만 접근 가능");
